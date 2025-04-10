@@ -1,6 +1,6 @@
-'''
+"""
 RUTAS DEL SERVER
-'''
+"""
 from flask import Blueprint, render_template, jsonify, request, flash, redirect, url_for
 from os.path import abspath, dirname, join
 import os
