@@ -1,3 +1,6 @@
+"""
+MODELOS PARA ESCRITURA Y LECTURA DE LA Bd
+"""
 from app.utils.db import db  # importa la instancia a la Db
 
 

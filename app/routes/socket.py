@@ -1,3 +1,6 @@
+"""
+COMUNICACIÓN SOCKET CON MAX/MSP
+"""
 from flask_socketio import send, emit
 from ..import socketio
 
