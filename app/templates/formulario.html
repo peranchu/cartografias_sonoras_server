@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartografías Sonoras Form</title>
+    <link rel="shorcut icon" href="{{url_for('static', filename='favicon.ico')}}">
+    <!--LEAFLET-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/leaflet.css')}}">
+    <!--BOOTSTRAP-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+    <style>
+        #map {
+            height: 480px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 class="text-center mt-5 mb-5 text-primary">Cartografías Sonoras</h1>
+
+    <!--MAPA-->
+    <div class="container">
+        <div class="row mb-3">
+            <div id="map"></div>
+        </div>
+    </div>
+    
+    <!--FORMULARIO-->
+    <div class="container">
+        <div class="card shadow mb-2">
+            <div class="card-body">
+                {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                {% for category, message in messages%}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+                <form action="/api/datosPos" method="post" enctype="multipart/form-data">
+                    {{ form.hidden_tag() }}
+                    <div class="mb-2">
+                        {{ form.latitude.label(class="form-label") }}
+                        <input type="" class="form-control" type="text", id="lat_v" readonly>
+                        {{ form.latitude(type='hidden', id='lat', class="form-control") }}
+                    </div>
+
+                    <div class="mb-2">
+                        {{ form.longitude.label(class="form-label") }}
+                        <input type="" class = 'form-control' id="lng_v" readonly>
+                        {{ form.longitude(type='hidden', id='lng', class="form-control") }}
+                    </div>
+
+                    <div class="mb-2">
+                        {{ form.name.label(class="form-labe") }}
+                        {{ form.name(class="form-control") }}
+                    </div>
+
+                    <div class="mb-2">
+                        {{ form.date.label(class="form-label") }}
+                        {{ form.date(class="form-control") }}
+                    </div>
+
+                    <div class="mb-2">
+                        {{ form.time.label(class="form-label") }}
+                        {{ form.time(class="form-control") }}
+                    </div>
+
+                    <div class="mb-2">
+                        {{ form.file(class="form-control") }}
+                    </div>
+
+                    <button onclick="update()" type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+                <div class="progress mt-2" id="progress_Status">
+                    <div class="progress-bar bg-info" role="progressbar" style="width: 0%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" id="myProgressBar"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--BOOTSTRAP-->
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+    <!--LEAFLET-->
+    <script src="{{url_for('static', filename='js/leaflet.js')}}"></script>
+
+    <!--CONTROL MAPA FORMULARIO-->
+    <script src="{{url_for('static', filename='js/formulario.js')}}"></script>
+
+    <!--DESVANECIMIENTO ALERTAS-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                let alerts = document.querySelectorAll('.alert');
+                alerts.forEach(function (alert) {
+                    alert.style.opacity = '0';
+                    setTimeout(function () {
+                        alert.remove();
+                    }, 500);
+                })
+            }, 3000);
+        });
+    </script>
+</body>
+
+</html>
