@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartografías Sonoras</title>
+
+    <!--BOOTSTRAP-->
+    <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+</head>
+
+<body>
+    <h1 class="text-center mt-5 mb-5 text-primary">Cartografías Sonoras</h1>
+
+    <div class="container">
+        <div class="card shadow">
+            <div class="card-body">
+                <form action="/api/datosPos" method="post" enctype="multipart/form-data">
+                    <div class="mb-2">
+                        <label for="latitude" class="form-label">Latitud</label>
+                        <input type="text" name="latitude" class="form-control" id="latitude" placeholder="0">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="longitude" class="form-label">Longitud</label>
+                        <input type="text" name="longitude" class="form-control" id="longitude" placeholder="0">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Nombre">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="date" class="form-label">Fecha</label>
+                        <input type="date" name="date" class="form-control" id="date">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="hour" class="form-label">Hora</label>
+                        <input type="time" name="time" class="form-control" id="hour">
+                    </div>
+                    <div class="mb-2">
+                        <input type="file" name="uploadFile" class="form-control" id="uplod_file" accept=".wav">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!--BOOTSTRAP-->
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+</body>
+
+</html>

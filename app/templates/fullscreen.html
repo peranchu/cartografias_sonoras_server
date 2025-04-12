@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cartografías Sonoras Posiciones</title>
+    <!--FAVICON-->
+    <link
+      rel="shorcut icon"
+      href="{{url_for('static', filename='favicon.ico')}}"
+    />
+    <!--BOOTSTRAP-->
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/bootstrap.min.css')}}"
+    />
+    <!--LEAFLET-->
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/leaflet.css')}}"
+    />
+
+    <style>
+      #map {
+        height: 640px;
+      }
+
+      .popupCustom .leaflet-popup-tip,
+      .popupCustom .leaflet-popup-content-wrapper {
+        background: #e0e0e0;
+        color: #234c5e;
+        opacity: 0.9;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!--MAPA-->
+    <div class="container">
+      <div class="row mt-3 mb-3">
+        <div id="map"></div>
+      </div>
+    </div>
+    <!--REPRODUCIENDO-->
+    <div class="container text-center">
+      <div class="card shadow">
+        <h5 class="card-header text-light bg-secondary" id="header_card">
+          Stop
+        </h5>
+        <div class="card-body" id="repro">
+          <h5 class="card-title text-dark" id="audio_name"></h5>
+          <p class="card-text text-dark fs-5" id="name"></p>
+          <div class="row justify-content-md-center">
+            <div class="col col-lg-2">
+              <p class="card-text text-dark fs-5" id="lat"></p>
+            </div>
+            <div class="col col-lg-2">
+              <p class="card-text text-dark fs-5" id="lon"></p>
+            </div>
+            <div class="col col-lg-2">
+              <p class="card-text text-dark fs-5" id="time"></p>
+            </div>
+            <div class="col col-lg-2">
+              <p class="card-text text-dark fs-5" id="date"></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--SOCKET-->
+    <script src="{{url_for('static', filename='js/socket.io.min.js')}}"></script>
+    <!--BOOTSTRAP-->
+    <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+    <!--LEAFLET-->
+    <script src="{{url_for('static', filename='js/leaflet.js')}}"></script>
+
+    <!--CONTROL MAPA FULL SCREEN-->
+    <script src="{{url_for('static', filename='js/fullScreen.js')}}"></script>
+  </body>
+</html>

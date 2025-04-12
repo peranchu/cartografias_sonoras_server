@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cartografías Sonoras</title>
+    <link rel="shorcut icon" href="{{url_for('static', filename='favicon.ico')}}">
+     <!--BOOTSTRAP-->
+     <link rel="stylesheet" href="{{url_for('static', filename='css/bootstrap.min.css')}}">
+</head>
+<body>
+    <div class="container">
+        {% with messages = get_flashed_messages(with_categories=True) %}
+                {% if messages %}
+                {% for category, message in messages%}
+                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                </div>
+                {% endfor %}
+                {% endif %}
+                {% endwith %}
+        <div class="row mt-2 mb-2">
+            <div class="col">
+                {% if (listPosiciones) %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Latitud</th>
+                            <th>Longitud</th>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Audio</th>
+                            <th>Action</th>
+                        </tr>    
+                    </thead>
+                    <tbody>
+                        {% for posicion in listPosiciones %}
+                        <tr>
+                            <td>{{ posicion.rowid }}</td>
+                            <td>{{ posicion.latitude }}</td>
+                            <td>{{ posicion.longitude }}</td>
+                            <td>{{ posicion.name }}</td>
+                            <td>{{ posicion.date }}</td>
+                            <td>{{ posicion.time }}</td>
+                            <td>{{ posicion.audio_name }}</td>
+                            <td>
+                                <a href="{{ url_for('crud.deleteId', id=posicion.rowid)}}">Borrar</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% else %}
+                    <h2>No hay Registros</h2>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+     <!--BOOTSTRAP-->
+     <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+
+      <!--DESVANECIMIENTO ALERTAS-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(function () {
+                let alerts = document.querySelectorAll('.alert');
+                alerts.forEach(function (alert) {
+                    alert.style.opacity = '0';
+                    setTimeout(function () {
+                        alert.remove();
+                    }, 500);
+                })
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
